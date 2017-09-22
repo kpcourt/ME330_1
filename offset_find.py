@@ -5,7 +5,7 @@ Created on Thu Sep 21 19:49:51 2017
 @author: Kevin
 """
 
-E = 180294 #Modulous find using excel make sure units match xlist
+E = 69911 #Modulous find using excel make sure units match xlist
 
 ylist = []
 xlist = []
@@ -31,11 +31,13 @@ for i in range(len(xlist)):
     else:
         i+=1
     if m != E:
-        y = ((-m*0.002)+(y2-m*x2))*(1/(1-(m/E)))
+        y = (E*(m + 500*y1 - 500*m*x1))/(500*(E - m))
+        x = (E + 500*y1 - 500*m*x1)/(500*(E - m))
     else:
-        i+=1        
-    if y>=y1 and y<=y2:
-        print("Offset= "+str(y))
+        i+=1     
+    if y>y1 and y<y2 and x>x1 and x<x2:
+        print(y)
     else:
         i+=1
-
+ 
+    
